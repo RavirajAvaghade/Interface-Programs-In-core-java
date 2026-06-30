@@ -1,0 +1,74 @@
+package com.nit.interf;
+
+public class BankAccountMain {
+
+	public static void main(String[] args) 
+	{
+		BankAccount B = new BankAccount("2261291242007");
+		B.Printstatement();
+		B.Depopsite(1212122);
+		B.Balance();
+		B.Withdraw(1200000);
+		B.Balance();
+		
+
+	}
+
+}
+interface Deposite
+{
+	void Depopsite(double Amount);
+}
+interface Withdraw
+{
+	void Withdraw(double amount);
+}
+interface Balancable
+{
+	void Balance();
+}
+class BankAccount implements Deposite,Withdraw,Balancable
+{
+	private String AccNum;
+	private String AccHolderName;
+	private double Balance;
+	public BankAccount(String AccNum)
+	{
+		this.AccNum = AccNum;
+		this.AccHolderName = " raj ";
+		this.Balance = 100000;
+	}
+	public void Balance()
+    {
+		System.out.println(" Account  Balance is "+Balance);
+		
+	}
+	public void Withdraw(double amount)
+	{
+		if (amount > 0 && amount <= Balance) {
+            Balance -= amount;
+            System.out.println("💸 Withdrawn ₹" + amount + " successfully!");
+        } else if (amount > Balance) {
+            System.out.println("⚠️ Insufficient balance!");
+        } else {
+            System.out.println("⚠️ Invalid withdrawal amount!");
+        }
+	}
+	public void Depopsite(double Amount) 
+	{
+		 if (Amount > 0) {
+	            Balance += Amount;
+	            System.out.println("✅ Deposited ₹" + Amount + " successfully!");
+	        } else {
+	            System.out.println("⚠️ Invalid deposit amount!");
+	        }
+	}
+	public void Printstatement()
+	{
+		System.out.println("=====================================");
+		System.out.println(" Account Number      : "+AccNum);
+		System.out.println(" Account Holder Name :" +AccHolderName);
+		System.out.println(" Balance             :" +Balance);
+		System.out.println("=====================================");
+	}
+}
