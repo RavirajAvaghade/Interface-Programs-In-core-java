@@ -1,0 +1,80 @@
+package com.nit.interf;
+
+public class DemoMusicMainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		SmartMusic S =  new SmartMusic("101");
+		S.playsong(" jay shree Ram ");
+		S.Rcordable(" sanam teri kasam ");
+		S.ConnectBluttoth();
+		S.SendSong(" ram ", " JBL Speaker  ");
+
+	}
+
+}
+interface playble
+{
+	void playsong(String SongName);
+}
+interface Recordable
+{
+	void Rcordable(String SongName);
+}
+interface Connectable
+{
+	void ConnectBluttoth();
+	void SendSong(String SongName,String DeviceName);
+}
+class SmartMusic implements playble,Recordable,Connectable
+{
+	private String Diviceid;
+	private int Songplayed;
+	private int SongRecord;
+	private boolean bloothotconnect;
+	public SmartMusic(String Diviceid)
+	{
+		this.Diviceid = Diviceid;
+		this.Songplayed = 0;
+		this.SongRecord = 0;
+		this.bloothotconnect = false;
+
+		
+	}
+	public void playsong(String SongName) 
+	{
+		Songplayed++;
+		System.out.println(" Device "+Diviceid+" Played Song "+SongName+" Total Played "+Songplayed);
+		
+		
+	}
+	public void Rcordable(String SongName) 
+	{
+		SongRecord++;
+		System.out.println(" Device "+Diviceid+" Song Record  "+SongName+" Total Recorded "+SongRecord);
+		
+		
+	}
+	public void ConnectBluttoth() 
+	{
+		bloothotconnect = false;
+		System.out.println(" Device "+Diviceid+" Bluetooth Connected ");
+		
+		
+	}
+	public void SendSong(String SongName, String DeviceName) 
+	{
+		if(bloothotconnect)
+		{
+			System.out.println(" Device"+ Diviceid+" Sent Song "+SongName+" to device "+DeviceName+ " ");
+		
+		}
+		else
+		{
+			System.out.println(" Device  "+ Diviceid+" Can not Send Song Bluttoth Not Connected ");
+		}
+		
+	}
+	
+}
